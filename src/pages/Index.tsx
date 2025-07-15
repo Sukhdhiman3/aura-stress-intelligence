@@ -5,7 +5,7 @@ import HowItWorks from '@/components/HowItWorks';
 import TechnologySection from '@/components/TechnologySection';
 import LiveDemo from '@/components/LiveDemo';
 import VisionSection from '@/components/VisionSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
+
 import ContactSection from '@/components/ContactSection';
 
 const Index = () => {
@@ -27,21 +27,39 @@ const Index = () => {
     // Add smooth scrolling behavior
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Intersection Observer for animations
+    // Enhanced Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
+            const target = entry.target as HTMLElement;
+            
+            // Add different animations based on data attributes
+            if (target.classList.contains('scroll-reveal')) {
+              target.classList.add('revealed');
+            } else if (target.classList.contains('scroll-reveal-left')) {
+              target.classList.add('revealed');
+            } else if (target.classList.contains('scroll-reveal-right')) {
+              target.classList.add('revealed');
+            } else if (target.classList.contains('scroll-reveal-scale')) {
+              target.classList.add('revealed');
+            } else {
+              // Default animation
+              target.classList.add('animate-fade-in-up');
+            }
           }
         });
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px' // Trigger animation slightly before element is fully visible
+      }
     );
 
-    // Observe all sections
-    document.querySelectorAll('section').forEach((section) => {
-      observer.observe(section);
+    // Observe all sections and elements with scroll-reveal classes
+    const elementsToObserve = document.querySelectorAll('section, .scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
+    elementsToObserve.forEach((element) => {
+      observer.observe(element);
     });
 
     return () => {
@@ -79,9 +97,6 @@ const Index = () => {
         
         {/* Vision */}
         <VisionSection />
-        
-        {/* Testimonials */}
-        <TestimonialsSection />
         
         {/* Contact */}
         <ContactSection />

@@ -14,31 +14,31 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 mb-8 animate-fade-in-down">
-            <Shield className="h-4 w-4 text-primary" />
+          <div className="inline-flex items-center gap-2 glass-card px-6 py-3 mb-8 scroll-reveal-scale hover-wiggle">
+            <Shield className="h-5 w-5 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">
               Premium AI Health Technology
             </span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up">
-            <span className="text-gradient-gold">AI-Powered</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 scroll-reveal">
+            <span className="text-gradient-primary">AI-Powered</span>
             <br />
             <span className="text-foreground">Stress Intelligence</span>
             <br />
-            <span className="text-gradient-neural">for Every Moment</span>
+            <span className="text-gradient-tech">for Every Moment</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in-up">
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto scroll-reveal">
             Advanced multimodal AI system that analyzes facial expressions, voice patterns, 
             physiological signals, and behavioral data to predict stress levels with 
             unprecedented accuracy.
           </p>
 
           {/* Stats */}
-          <div className="flex justify-center gap-8 mb-12 animate-fade-in-up">
+          <div className="flex justify-center gap-8 mb-12 scroll-reveal-left">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">98.7%</div>
               <div className="text-sm text-muted-foreground">Accuracy</div>
@@ -54,35 +54,35 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center scroll-reveal-right">
             <Button 
               size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow group"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow hover-bounce group px-8 py-4 text-lg rounded-full"
             >
               Try Live Demo
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
               size="lg" 
               variant="ghost" 
-              className="glass-button group"
+              className="glass-button group px-8 py-4 text-lg rounded-full hover-lift"
             >
-              <Play className="mr-2 h-4 w-4" />
+              <Play className="mr-2 h-5 w-5" />
               Watch Demo
             </Button>
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex justify-center items-center gap-8 mt-16 animate-fade-in-up">
-            <div className="flex items-center gap-2">
+          <div className="flex justify-center items-center gap-8 mt-16 scroll-reveal-scale">
+            <div className="flex items-center gap-2 hover-wiggle">
               <Zap className="h-5 w-5 text-primary" />
               <span className="text-sm text-muted-foreground">HIPAA Compliant</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hover-wiggle">
               <Shield className="h-5 w-5 text-accent" />
               <span className="text-sm text-muted-foreground">Enterprise Security</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 hover-wiggle">
               <Users className="h-5 w-5 text-primary" />
               <span className="text-sm text-muted-foreground">10M+ Users</span>
             </div>
