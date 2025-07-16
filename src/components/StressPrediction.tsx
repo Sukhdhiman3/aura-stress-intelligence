@@ -47,22 +47,50 @@ const StressPrediction = () => {
     setIsAnalyzing(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
+      // Collect data from other components (you'll need to pass this data as props)
+      const requestData = {
+        imageData: null, // Will be passed from CameraCapture component
+        audioData: null, // Will be passed from AudioRecorder component
+        physiologicalData: {}, // Will be passed from PhysiologicalInputs component
+        surveyData: {} // Will be passed from SurveyInputs component
+      };
+
+      // Try to call the backend API
+      const response = await fetch('http://localhost:5000/api/predict-stress', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setResult(result);
+        
+        toast({
+          title: "Analysis Complete",
+          description: `Stress level: ${result.stressLevel} (${result.confidence}% confidence)`,
+          variant: result.stressLevel === 'high' ? 'destructive' : 'default'
+        });
+      } else {
+        // Fallback to mock data if backend is not available
+        const prediction = mockPrediction();
+        setResult(prediction);
+        
+        toast({
+          title: "Analysis Complete (Demo Mode)",
+          description: `Stress level: ${prediction.stressLevel.toUpperCase()} (${prediction.confidence}% confidence)`,
+        });
+      }
+    } catch (error) {
+      // Fallback to mock data if backend is not available
       const prediction = mockPrediction();
       setResult(prediction);
       
       toast({
-        title: "Analysis Complete",
-        description: `Stress level: ${prediction.stressLevel.toUpperCase()} (${prediction.confidence}% confidence)`,
-        variant: prediction.stressLevel === 'high' ? 'destructive' : 'default'
-      });
-    } catch (error) {
-      toast({
-        title: "Analysis Failed",
-        description: "Unable to complete stress analysis. Please try again.",
-        variant: "destructive"
+        title: "Analysis Complete (Demo Mode)",
+        description: `Backend not available, using demo data`,
       });
     } finally {
       setIsAnalyzing(false);
